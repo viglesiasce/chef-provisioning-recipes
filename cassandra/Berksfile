@@ -1,0 +1,3 @@
+source 'https://supermarket.chef.io'
+cookbook 'consul'
+cookbook 'cassandra', github: 'michaelklishin/cassandra-chef-cookbook'

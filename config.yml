@@ -1,0 +1,31 @@
+---
+profiles:
+  default:
+    credentials: home-cloud
+    imageId: emi-5B295ED1
+    sshUsername: root
+    instanceType: m1.small
+  qa-cloud:
+    credentials: qa-cloud
+    imageId: emi-1607A63E
+    sshUsername: root
+    instanceType: m1.large
+  aws:
+    credentials: aws
+    imageId: ami-c4072e81
+    instanceType: t1.micro
+credentials:
+  home-cloud:
+    accessKey: XXXXXXXXXXXXXXXXXXX
+    secretKey: YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY
+    ec2Endpoint: 'http://compute.home'
+    iamEndpoint: 'http://euare.home'
+  qa-cloud:
+    accessKey: XXXXXXXXXXXXXXXXXXX
+    secretKey: YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY
+    ec2Endpoint: 'http://10.111.1.136:8773/services/compute/'
+    iamEndpoint: 'http://10.111.1.136:8773/services/Euare/'
+  aws:
+    accessKey: XXXXXXXXXXXXXXXXXXX
+    secretKey: YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY
+    region: us-west-1

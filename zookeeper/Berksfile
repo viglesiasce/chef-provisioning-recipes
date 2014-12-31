@@ -1,0 +1,3 @@
+source 'https://supermarket.chef.io'
+cookbook 'exhibitor', github: 'SimpleFinance/chef-exhibitor'
+cookbook 'zookeeper', github: 'SimpleFinance/chef-zookeeper'
