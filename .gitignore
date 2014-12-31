@@ -1,0 +1,4 @@
+Berksfile.lock
+.idea/**
+.chef/**
+.chef-backup/**
