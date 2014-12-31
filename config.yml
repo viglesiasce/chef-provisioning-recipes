@@ -1,7 +1,7 @@
 ---
 profiles:
   default:
-    credentials: home-cloud
+    credentials: default
     imageId: emi-5B295ED1
     sshUsername: root
     instanceType: m1.small
@@ -15,7 +15,7 @@ profiles:
     imageId: ami-c4072e81
     instanceType: t1.micro
 credentials:
-  home-cloud:
+  default:
     accessKey: XXXXXXXXXXXXXXXXXXX
     secretKey: YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY
     ec2Endpoint: 'http://compute.home'
