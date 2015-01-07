@@ -1,0 +1,5 @@
+source 'https://supermarket.chef.io'
+cookbook 'exhibitor', github: 'SimpleFinance/chef-exhibitor'
+cookbook 'zookeeper', github: 'SimpleFinance/chef-zookeeper'
+cookbook 'mesos', github: 'everpeace/cookbook-mesos'
+cookbook 'docker', github: "bflad/chef-docker"
