@@ -30,6 +30,7 @@ credentials:
 ```
 
 ## Deployment and Destroyment
+### Deploy
 In order to deploy a cluster run the deployer script with the name of the cluster
 you would like to deploy and the profile you'd like to use to deploy it:
 
@@ -37,6 +38,9 @@ you would like to deploy and the profile you'd like to use to deploy it:
 ./deployer zookeeper -p myCloud
 ```
 
+You should now be able to login to your instances with the keys found in ```./chef-repo/.chef/keys```.
+
+### Destroy
 To destroy the cluster you currently have deployed, use the --operation flag and
 set it to 'destroy'. For example:
 
