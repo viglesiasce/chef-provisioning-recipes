@@ -3,11 +3,11 @@ require 'chef/provisioning/fog_driver/driver'
 deployment_name = "#{ENV['application']}-#{ENV['credentials']}"
 total_machines = 3
 
-with_driver 'fog:AWS', :compute_options => { :aws_access_key_id => ENV['accessKey'],
-                                             :aws_secret_access_key => ENV['secretKey'],
+with_driver 'fog:AWS', :compute_options => { :aws_access_key_id => ENV['accessKey'] || ENV['AWS_ACCESS_KEY'],
+                                             :aws_secret_access_key => ENV['secretKey'] || ENV['AWS_SECRET_KEY'],
                                              :ec2_endpoint => ENV['ec2Endpoint'],
                                              :iam_endpoint => ENV['iamEndpoint'],
-                                             :region => ENV['region']
+                                             :region => ENV['region'] || ENV['AWS_REGION']
                      }
 
 with_machine_options :ssh_username => ENV['sshUsername'], :ssh_timeout => 60, :bootstrap_options => {

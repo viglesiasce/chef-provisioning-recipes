@@ -14,15 +14,12 @@ profiles:
     credentials: aws
     imageId: ami-c4072e81
     instanceType: t1.micro
+    region: us-west-1
 credentials:
   default:
-    accessKey: XXXXXXXXXXXXXXXXXXX
-    secretKey: YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY
     ec2Endpoint: 'http://compute.home'
     iamEndpoint: 'http://euare.home'
   qa-cloud:
-    accessKey: XXXXXXXXXXXXXXXXXXX
-    secretKey: YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY
     ec2Endpoint: 'http://10.111.1.136:8773/services/compute/'
     iamEndpoint: 'http://10.111.1.136:8773/services/Euare/'
   aws:
