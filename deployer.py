@@ -36,22 +36,26 @@ def read_configuration(args):
     config = {'chefRepo': os.path.abspath('./chef-repo'),
               'keyName': args.application,
               'application': args.application,
-              'operation': args.operation}
+              'operation': args.operation,
+              'accessKey': os.getenv('AWS_ACCESS_KEY'),
+              'secretKey': os.getenv('AWS_SECRET_KEY'),
+              'ec2Endpoint': os.getenv('EC2_URL'),
+              'iamEndpoint': os.getenv('EUARE_URL')
+              }
     # Add in config file
     with open(args.config) as config_file:
         config_file = yaml.load(config_file)
     # Add in profile
     profile = config_file['profiles'][args.profile]
     config.update(profile)
-    # Add in creds
-    config.update(config_file['credentials'][profile['credentials']])
+    # Add in creds if they are in the profile
+    if 'credentials' in profile:
+        config.update(config_file['credentials'][profile['credentials']])
     return config
 
-def deploy(context):
-    recipe_path = os.path.abspath("{0}/recipe.rb".format(context['application']))
-    with show('debug'):
-        with shell_env(**context):
-            local('chef-client -z {0} -c {1}/.chef/client.rb'.format(recipe_path, context['chefRepo']))
+def run_chef_client(context, recipes):
+    with shell_env(**context):
+        local('chef-client -c {0}/.chef/client.rb -z {1}'.format(context['chefRepo'], ' '.join(recipes)))
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
@@ -59,9 +63,15 @@ if __name__ == '__main__':
     parser.add_argument('-p', '--profile', default='default')
     parser.add_argument('-c', '--config', default='config.yml')
     parser.add_argument('--debug', action='store_true', default=False)
-    parser.add_argument('--operation', default='create')
+    parser.add_argument('-o', '--operation', default='create')
     args = parser.parse_args()
     context = read_configuration(args)
     create_chef_repo(context)
     download_cookbook_deps(context)
-    deploy(context)
+    if args.operation == 'create':
+        recipes = [os.path.abspath("common/stage.rb"),
+                   os.path.abspath("{0}/recipe.rb".format(context['application']))]
+        run_chef_client(context, recipes)
+    elif args.operation == 'destroy':
+        recipes = [os.path.abspath("common/destroy.rb")]
+        run_chef_client(context, recipes)
