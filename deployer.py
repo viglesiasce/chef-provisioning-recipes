@@ -73,5 +73,6 @@ if __name__ == '__main__':
                    os.path.abspath("{0}/recipe.rb".format(context['application']))]
         run_chef_client(context, recipes)
     elif args.operation == 'destroy':
-        recipes = [os.path.abspath("common/destroy.rb")]
+        recipes = [os.path.abspath("common/stage.rb"),
+                   os.path.abspath("common/destroy.rb")]
         run_chef_client(context, recipes)
