@@ -12,6 +12,7 @@ def create_chef_repo(context):
     local('chef generate repo {0}'.format(repo_dir))
     local('mkdir -p {0}/.chef'.format(context['chefRepo']))
     local("echo 'chef_repo_path  \"{0}\"' > {0}/.chef/client.rb".format(context['chefRepo']))
+    local("echo 'log_level :info' >> {0}/.chef/client.rb".format(context['chefRepo']))
 
 
 def download_cookbook_deps(context):
