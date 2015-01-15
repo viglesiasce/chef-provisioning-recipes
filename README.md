@@ -4,7 +4,7 @@ chef-provisioning-recipes
 Recipes for provisioning software stacks using Chef Provisioning
 
 ## Installation
-1.  Install [ChefDK](https://downloads.chef.io/chef-dk/)
+1.  Install [ChefDK](https://downloads.chef.io/chef-dk/)  ```curl -L https://www.opscode.com/chef/install.sh | sudo bash -s -- -P chefdk```
 2.  ```easy_install fabric PyYaml```
 3.  ```git clone https://github.com/viglesiasce/chef-provisioning-recipes```
 
