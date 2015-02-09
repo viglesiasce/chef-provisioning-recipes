@@ -40,7 +40,7 @@ def read_configuration(args):
               'accessKey': os.getenv('AWS_ACCESS_KEY'),
               'secretKey': os.getenv('AWS_SECRET_KEY'),
               'ec2Endpoint': os.getenv('EC2_URL'),
-              'iamEndpoint': os.getenv('EUARE_URL')
+              'iamEndpoint': os.getenv('AWS_IAM_URL')
               }
     # Add in config file
     with open(args.config) as config_file:
@@ -66,13 +66,14 @@ if __name__ == '__main__':
     parser.add_argument('-o', '--operation', default='create')
     args = parser.parse_args()
     context = read_configuration(args)
-    create_chef_repo(context)
-    download_cookbook_deps(context)
     if args.operation == 'create':
-        recipes = [os.path.abspath("common/stage.rb"),
+        recipes = [os.path.abspath("common/configure.rb"),
+                   os.path.abspath("common/stage.rb"),
                    os.path.abspath("{0}/recipe.rb".format(context['application']))]
+        create_chef_repo(context)
+        download_cookbook_deps(context)
         run_chef_client(context, recipes)
     elif args.operation == 'destroy':
-        recipes = [os.path.abspath("common/stage.rb"),
+        recipes = [os.path.abspath("common/configure.rb"),
                    os.path.abspath("common/destroy.rb")]
         run_chef_client(context, recipes)

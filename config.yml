@@ -2,9 +2,9 @@
 profiles:
   default:
     credentials: default
-    imageId: emi-5B295ED1
+    imageId: emi-9445e3eb
     sshUsername: root
-    instanceType: m1.small
+    instanceType: m2.2xlarge
   qa-cloud:
     credentials: qa-cloud
     imageId: emi-1607A63E
