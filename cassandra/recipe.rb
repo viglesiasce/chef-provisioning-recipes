@@ -1,8 +1,9 @@
 Chef::Log.info("Run config: #{self.run_context.run_config.all_servers}")
 deployment_options = { 'java' => { 'jdk_version' => '7',
                                    'install_flavor' => 'openjdk'},
-                       'cassandra' => { 'version' => '2.0.10',
+                       'cassandra' => { 'version' => '2.0.12',
                                         'release' => '1',
+                                        'vnodes' => '256',
                                         'cluster_name' => self.run_context.run_config.deployment_name,
                                         'service_action' => 'enable',
                                         'metrics_reporter' => {'config' => {}}},
