@@ -1,0 +1,16 @@
+{
+  "id": "ttyjs",
+  "cpus": 1,
+  "mem": 256.0,
+  "instances": 1,
+  "container": {
+    "type": "DOCKER",
+    "docker": {
+      "image": "dorowu / ubuntu-ssh-ttyjs",
+      "network": "BRIDGE",
+      "portMappings": [
+        { "containerPort": 3000, "hostPort": 0}
+      ]
+    }
+  }
+}

@@ -1,0 +1,9 @@
+{
+"cmd": "/root/mesos-dns -config=/root/config.json",
+"cpus": 0.2,
+"mem": 512,
+"ports": [53],
+"id": "mesos-dns",
+"instances": 3,
+"constraints": [["hostname", "UNIQUE"]]
+}

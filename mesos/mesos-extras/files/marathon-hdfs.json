@@ -1,0 +1,14 @@
+{
+        "id": "hdfs",
+        "cmd": "cd hdfs-mesos* && if [ -e '../mesos-site.xml' ]; then cp -f ../mesos-site.xml ./etc/hadoop/; fi && ./bin/hdfs-mesos",
+        "cpus": 1.0,
+        "disk": 100.0,
+        "maxLaunchDelaySeconds": 3600,
+        "mem": 128.0,
+        "ports": [
+            10000
+        ],
+        "uris": [
+            "https://s3.amazonaws.com/downloads.mesosphere.io/hdfs/artifacts/dcos/0.1.1/hdfs-mesos-0.1.1.tgz"
+        ]
+}

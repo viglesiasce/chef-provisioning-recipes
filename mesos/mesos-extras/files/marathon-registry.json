@@ -1,0 +1,14 @@
+{
+  "id": "registry",
+  "cpus": 0.5,
+  "mem": 256.0,
+  "instances": 2,
+  "ports": [5000],
+  "container": {
+    "type": "DOCKER",
+    "docker": {
+      "image": "registry",
+      "network": "HOST"
+    }
+  }
+}

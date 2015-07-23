@@ -1,0 +1,16 @@
+{
+    "id": "search",
+    "cmd": "elasticsearch/bin/elasticsearch --cluster.name es-mesos --node.name $HOST",
+    "container": {
+        "docker": {
+            "image": "barnybug/elasticsearch",
+            "network": "HOST"
+        },
+        "type": "DOCKER"
+    },
+    "constraints": [["hostname", "UNIQUE"]],
+    "cpus": 1,
+    "mem": 2048,
+    "instances": 2,
+    "ports": [9200]
+}
