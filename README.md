@@ -13,6 +13,14 @@ The config file is a YAML formatted dictionary with the following structure.
 By default the tool uses the config.yml found in the current working directory.
 The default profile is used when no command line option is passed to the deployer.
 
+The following environment variables can be used instead of hardcoding
+credentials:
+
+EC2_URL
+AWS_IAM_URL
+AWS_ACCESS_KEY
+AWS_SECRET_KEY
+
 ```
 profiles:
   default: # name of the profile
