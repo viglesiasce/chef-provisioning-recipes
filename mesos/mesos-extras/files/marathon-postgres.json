@@ -1,0 +1,17 @@
+{
+  "id": "postgres",
+  "cpus": 1,
+  "mem": 512,
+  "disk": 0,
+  "instances": 1,
+  "container": {
+    "type": "DOCKER",
+    "docker": {
+      "image": "postgres",
+      "network": "BRIDGE",
+      "portMappings": [
+        { "containerPort": 5432, "hostPort": 5432}
+      ]
+    }
+  }
+}

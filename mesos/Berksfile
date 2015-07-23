@@ -1,5 +1,7 @@
 source 'https://supermarket.chef.io'
 cookbook 'exhibitor', github: 'SimpleFinance/chef-exhibitor'
 cookbook 'zookeeper', github: 'SimpleFinance/chef-zookeeper'
-cookbook 'mesos', github: 'everpeace/cookbook-mesos'
-cookbook 'docker', github: "bflad/chef-docker"
+cookbook 'mesos', github: 'mdsol/mesos_cookbook'
+cookbook 'docker', github: "bflad/chef-docker", branch: '0.36-stable'
+cookbook 'runit', github: 'hw-cookbooks/runit', branch: 'develop'
+cookbook 'mesos-extras', path: './mesos-extras'

@@ -1,0 +1,92 @@
+DEPENDENCIES
+  docker
+    git: git://github.com/bflad/chef-docker.git
+    revision: 6bd5a32d7b00a45aaa0824cc3dc0a99fb6cf094e
+    branch: 0.36-stable
+  exhibitor
+    git: git://github.com/SimpleFinance/chef-exhibitor.git
+    revision: 76dc2fbcefa4b9561e2200ae74a30bf9e4bc7990
+  mesos
+    git: git://github.com/mdsol/mesos_cookbook.git
+    revision: 2a75807fb55600a1813f3c0117c2385ce044d7fa
+  mesos-extras
+    path: mesos-extras
+  runit
+    git: git://github.com/hw-cookbooks/runit.git
+    revision: ee15ff5d5c4a04fe067ca870d44a4a62599d13c3
+    branch: develop
+  zookeeper
+    git: git://github.com/SimpleFinance/chef-zookeeper.git
+    revision: a9657064cf0173d969f912e53c277026509f9be7
+
+GRAPH
+  apt (2.7.0)
+  aufs (0.1.1)
+    apt (>= 0.0.0)
+    modules (>= 0.0.0)
+  build-essential (2.2.3)
+  chef-sugar (3.1.1)
+  chef_handler (1.2.0)
+  device-mapper (0.1.0)
+    apt (>= 0.0.0)
+    modules (>= 0.0.0)
+  dmg (2.2.2)
+  docker (0.36.0)
+    apt (>= 0.0.0)
+    aufs (>= 0.1.1)
+    device-mapper (>= 0.1.0)
+    git (>= 0.0.0)
+    golang (>= 0.0.0)
+    homebrew (>= 0.0.0)
+    iptables (>= 0.0.0)
+    lxc (>= 1.1.6)
+    modules (>= 0.0.0)
+    runit (>= 0.0.0)
+    sysctl (>= 0.0.0)
+    yum-epel (>= 0.0.0)
+  dpkg_autostart (0.2.0)
+  exhibitor (0.5.0)
+    build-essential (>= 0.0.0)
+    java (>= 0.0.0)
+    runit (>= 0.0.0)
+    zookeeper (~> 2.0)
+  git (4.2.2)
+    build-essential (>= 0.0.0)
+    dmg (>= 0.0.0)
+    windows (>= 0.0.0)
+    yum-epel (>= 0.0.0)
+  golang (1.5.1)
+  homebrew (1.13.0)
+    build-essential (>= 2.1.2)
+  iptables (1.0.0)
+  iptables-ng (2.2.7)
+  java (1.31.0)
+  lxc (2.0.0)
+    dpkg_autostart (>= 0.1.10)
+    iptables-ng (>= 0.0.0)
+    polipo (>= 0.0.0)
+  mesos (3.3.0)
+    apt (>= 0.0.0)
+    chef-sugar (>= 0.0.0)
+    java (>= 0.0.0)
+    yum (~> 3.0)
+  mesos-extras (0.1.0)
+    mesos (>= 0.0.0)
+  modules (0.2.0)
+  ohai (2.0.1)
+  packagecloud (0.0.19)
+  polipo (0.1.0)
+  runit (1.7.3)
+    packagecloud (>= 0.0.0)
+  sysctl (0.6.2)
+    ohai (>= 0.0.0)
+  windows (1.37.0)
+    chef_handler (>= 0.0.0)
+  yum (3.6.3)
+  yum-epel (0.6.2)
+    yum (~> 3.2)
+  zookeeper (2.7.0)
+    apt (>= 0.0.0)
+    build-essential (>= 2.0.2)
+    java (>= 0.0.0)
+    runit (>= 0.0.0)

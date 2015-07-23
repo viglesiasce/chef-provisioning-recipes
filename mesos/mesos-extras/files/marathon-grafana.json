@@ -1,0 +1,14 @@
+{
+  "id": "grafana",
+  "cpus": 0.5,
+  "mem": 256.0,
+  "instances": 1,
+  "ports": [3000],
+  "container": {
+    "type": "DOCKER",
+    "docker": {
+      "image": "grafana/grafana",
+      "network": "HOST"
+    }
+  }
+}

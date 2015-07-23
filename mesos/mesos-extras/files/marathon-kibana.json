@@ -1,0 +1,18 @@
+{
+  "id": "kibana",
+  "cpus": 0.5,
+  "mem": 512.0,
+  "instances": 1,
+  "ports": [5601],
+  "env": {
+    "ELASTICSEARCH_URL": "http://search.marathon.mesos:9200/"
+  },
+  "constraints": [["hostname", "UNIQUE"]],
+  "container": {
+    "type": "DOCKER",
+    "docker": {
+      "image": "kibana",
+      "network": "HOST"
+    }
+  }
+}

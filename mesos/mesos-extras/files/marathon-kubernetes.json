@@ -1,0 +1,21 @@
+{
+  "id": "k8sm",
+  "cpus": 1,
+  "mem": 512,
+  "disk": 0,
+  "instances": 1,
+  "env": {
+    "K8SM_MESOS_MASTER": "master.mesos"
+  },
+  "container": {
+    "type": "DOCKER",
+    "volumes": [],
+    "docker": {
+      "image": "mesosphere/kubernetes:k8s-0.14.2-k8sm-0.5-dcos-20150603T1136520000",
+      "network": "HOST",
+      "privileged": false,
+      "parameters": [],
+      "forcePullImage": true
+    }
+  }
+}

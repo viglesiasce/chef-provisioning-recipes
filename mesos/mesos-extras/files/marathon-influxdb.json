@@ -1,0 +1,8 @@
+{
+  "id": "influxdb",
+  "cpus": 0.5,
+  "mem": 2048.0,
+  "instances": 1,
+  "ports": [8083, 8086, 8096],
+  "cmd": "/opt/influxdb/influxd run -config /etc/opt/influxdb/influxdb.conf"
+}
