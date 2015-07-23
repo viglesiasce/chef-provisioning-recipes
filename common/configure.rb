@@ -1,10 +1,10 @@
 class RunConfig
-  attr_accessor :name, :credentials, :machine_count, :deployment_name
+  attr_accessor :name, :endpoints, :machine_count, :deployment_name
   def initialize
     @name = ENV['application']
-    @credentials = ENV['credentials']
-    @machine_count = 3
-    @deployment_name = "#{ENV['application']}-#{ENV['credentials']}"
+    @endpoints = ENV['endpoints']
+    @machine_count = ENV.fetch('machineCount', 3).to_i
+    @deployment_name = "#{ENV['application']}-#{ENV['endpoints']}"
   end
   def staging_env
     "staging-#{self.deployment_name}"
@@ -40,13 +40,10 @@ with_driver 'fog:AWS', :compute_options => { :aws_access_key_id => ENV['accessKe
                                              :region => ENV['region']
                      }
 
-with_machine_options :ssh_username => ENV['sshUsername'], :ssh_timeout => 480, :bootstrap_options => {
-                                                            :image_id => ENV['imageId'],
-                                                            :flavor_id => ENV['instanceType'],
-                                                            :key_name => self.run_context.run_config.deployment_name,
-                                                            :block_device_mapping => [
-                                                                { :DeviceName => '/dev/sda', 'Ebs.VolumeSize' => 20 }],
-                                                            :user_data => 'Content-Type: multipart/mixed; boundary="===============5423618256409275201=="
+bootstrap_options = { :image_id => ENV['imageId'],
+                      :flavor_id => ENV['instanceType'],
+                      :key_name => self.run_context.run_config.deployment_name,
+                      :user_data => 'Content-Type: multipart/mixed; boundary="===============5423618256409275201=="
 MIME-Version: 1.0
 
 --===============5423618256409275201==
@@ -67,10 +64,19 @@ Content-Disposition: attachment; filename="cloud-config.txt"
 disable_root: false
 apt_mirror: http://us.archive.ubuntu.com/ubuntu/
 byobu_by_default: system
+apt_update: true
 resize_rootfs: True
-mounts:
-- [ swap, null ]
 
 --===============5423618256409275201==--
 '
 }
+
+if ENV['volumeSize']
+  bootstrap_options[:block_device_mapping] = [{ :DeviceName => '/dev/sda', 'Ebs.VolumeSize' => ENV.fetch('volumeSize', 10) },
+                                              { :DeviceName => '/dev/sdb', :VirtualName => 'ephemeral0' }]
+end
+
+with_machine_options :ssh_username => ENV.fetch('sshUsername', 'root'),
+                     :create_timeout => ENV.fetch('createTimeout', 480),
+                     :create_timeout => ENV.fetch('startTimeout', 480),
+                     :ssh_timeout => ENV.fetch('sshTimeout', 480), :bootstrap_options => bootstrap_options

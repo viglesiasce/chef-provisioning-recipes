@@ -13,7 +13,7 @@ def create_chef_repo(context):
     local('mkdir -p {0}/.chef'.format(context['chefRepo']))
     local("echo 'chef_repo_path  \"{0}\"' > {0}/.chef/client.rb".format(context['chefRepo']))
     local("echo 'log_level :info' >> {0}/.chef/client.rb".format(context['chefRepo']))
-
+#    local("echo 'ssl_verify_mode :verify_none' >> {0}/.chef/client.rb".format(context['chefRepo']))
 
 def download_cookbook_deps(context):
     """
@@ -48,9 +48,13 @@ def read_configuration(args):
     # Add in profile
     profile = config_file['profiles'][args.profile]
     config.update(profile)
+    if not config['accessKey'] or not config['secretKey']:
+        print 'Unable to find access or secret key.'
+        print 'Please set the AWS_ACCESS_KEY and AWS_SECRET_KEY env variables.'
+        exit(1)
     # Add in creds if they are in the profile
-    if 'credentials' in profile:
-        config.update(config_file['credentials'][profile['credentials']])
+    if 'endpoints' in profile:
+        config.update(config_file['endpoints'][profile['endpoints']])
     return config
 
 def run_chef_client(context, recipes):
