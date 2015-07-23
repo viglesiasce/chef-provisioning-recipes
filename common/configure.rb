@@ -53,7 +53,7 @@ Content-Transfer-Encoding: 7bit
 Content-Disposition: attachment; filename="script.sh"
 
 #!/bin/bash
-export hostname=`curl http://169.254.169.254/latest/meta-data/public-hostname`
+exit 0
 --===============5423618256409275201==
 Content-Type: text/cloud-config; charset="us-ascii"
 MIME-Version: 1.0
