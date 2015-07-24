@@ -13,6 +13,8 @@ The config file is a YAML formatted dictionary with the following structure.
 By default the tool uses the config.yml found in the current working directory.
 The default profile is used when no command line option is passed to the deployer.
 
+The image should be [Ubuntu Trusty](https://cloud-images.ubuntu.com/trusty/current/) with at least 5GB of free space on the root file system.
+
 The following environment variables can be used instead of hardcoding
 credentials:
 
