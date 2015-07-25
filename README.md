@@ -45,7 +45,7 @@ In order to deploy a cluster run the deployer script with the name of the cluste
 you would like to deploy and the profile you'd like to use to deploy it:
 
 ```
-./deployer mesos -p myCloud
+./deployer.py mesos -p myCloud
 ```
 
 You should now be able to login to your instances with the keys found in ```./chef-repo/.chef/keys```.
@@ -55,5 +55,5 @@ To destroy the cluster you currently have deployed, use the --operation flag and
 set it to 'destroy'. For example:
 
 ```
-./deployer mesos -p myCloud --operation destroy
+./deployer.py mesos -p myCloud --operation destroy
 ```
