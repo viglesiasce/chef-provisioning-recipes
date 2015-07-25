@@ -73,3 +73,12 @@ directory '/root/apps'
     not_if "curl http://localhost:8080/v2/apps | egrep '\"id\":\"/#{app_name}\"'"
   end
 end
+
+service 'rsyslog' do
+  action :nothing
+end
+
+file '/etc/rsyslog.d/99-mesos-remote.conf' do
+  content '*.*   @logstash.marathon.mesos:5000'
+  notifies :restart, 'service[rsyslog]', :immediately
+end
