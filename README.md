@@ -18,10 +18,10 @@ The image should be [Ubuntu Trusty](https://cloud-images.ubuntu.com/trusty/curre
 The following environment variables can be used instead of hardcoding
 credentials:
 
-EC2_URL
-AWS_IAM_URL
-AWS_ACCESS_KEY
-AWS_SECRET_KEY
+* EC2_URL
+* AWS_IAM_URL
+* AWS_ACCESS_KEY
+* AWS_SECRET_KEY
 
 ```
 profiles:
