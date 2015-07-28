@@ -1,7 +1,7 @@
 #!/usr/bin/python
 import os
 from fabric.api import run, env, local, execute, task
-from fabric.context_managers import shell_env, show
+from fabric.context_managers import shell_env, show, lcd
 from fabric.state import output
 import argparse
 import yaml
@@ -68,6 +68,7 @@ if __name__ == '__main__':
     parser.add_argument('-c', '--config', default='config.yml')
     parser.add_argument('--debug', action='store_true', default=False)
     parser.add_argument('-o', '--operation', default='create')
+    parser.add_argument('-r', '--run', default='uptime', required=False)
     args = parser.parse_args()
     context = read_configuration(args)
     if args.operation == 'create':
@@ -77,6 +78,13 @@ if __name__ == '__main__':
         create_chef_repo(context)
         download_cookbook_deps(context)
         run_chef_client(context, recipes)
+    elif args.operation == 'execute':
+        app_name = context['application']
+        with lcd(context['chefRepo']):
+            environment_name = app_name + '-' + args.profile
+            key_file = '.chef/keys/' + environment_name
+            knife_command = 'knife ssh -z -x root -i {0} chef_environment:{1} "{2}"'.format(key_file, environment_name, args.run)
+            local(knife_command)
     elif args.operation == 'destroy':
         recipes = [os.path.abspath("common/configure.rb"),
                    os.path.abspath("common/destroy.rb")]
